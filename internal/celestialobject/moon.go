@@ -7,7 +7,8 @@ import (
 const RADIANS float64 = math.Pi / 180
 
 type Moon struct {
-	Time float64
+	Time           float64
+	SunMeanAnomaly float64
 }
 
 func (m Moon) MeanLongitude() float64 {
@@ -45,8 +46,8 @@ func (m Moon) Variation() float64 {
 	//return math.Mod(0.658333*math.Sin(A), 360)
 }
 
-func (m Moon) AnnualInequality(sunMeanAnomaly float64) float64 {
-	var A = sunMeanAnomaly * math.Pi / 180
+func (m Moon) AnnualInequality() float64 {
+	var A = m.SunMeanAnomaly * math.Pi / 180
 	return -0.185556 * math.Sin(A)
 	//return math.Mod(-0.185556*math.Sin(A), 360)
 }
@@ -68,8 +69,8 @@ func (m Moon) Term1() float64 {
 	return -0.058889 * math.Sin(A)
 }
 
-func (m Moon) Term2(sunMeanAnomaly float64) float64 {
-	var A = (m.MeanAnomaly() + sunMeanAnomaly - 2*m.LongitudeDistanceFromSun()) * RADIANS
+func (m Moon) Term2() float64 {
+	var A = (m.MeanAnomaly() + m.SunMeanAnomaly - 2*m.LongitudeDistanceFromSun()) * RADIANS
 	return -0.057222 * math.Sin(A)
 }
 
@@ -78,22 +79,30 @@ func (m Moon) Term3() float64 {
 	return 0.053333 * math.Sin(A)
 }
 
-func (m Moon) Term4(sunMeanAnomaly float64) float64 {
-	var A = (sunMeanAnomaly - 2*m.LongitudeDistanceFromSun()) * RADIANS
+func (m Moon) Term4() float64 {
+	var A = (m.SunMeanAnomaly - 2*m.LongitudeDistanceFromSun()) * RADIANS
 	return -0.045833 * math.Sin(A)
 }
 
-func (m Moon) Term5(sunMeanAnomaly float64) float64 {
-	var A = (m.MeanLongitude() - sunMeanAnomaly) * RADIANS
+func (m Moon) Term5() float64 {
+	var A = (m.MeanLongitude() - m.SunMeanAnomaly) * RADIANS
 	return 0.041111 * math.Sin(A)
 }
 
-func (m Moon) Term6(sunMeanAnomaly float64) float64 {
-	var A = (m.MeanAnomaly() + sunMeanAnomaly) * RADIANS
+func (m Moon) Term6() float64 {
+	var A = (m.MeanAnomaly() + m.SunMeanAnomaly) * RADIANS
 	return -0.030556 * math.Sin(A)
 }
 
 func (m Moon) Term7() float64 {
 	var A = (2*m.ArgumentOfLatitude() - 2*m.LongitudeDistanceFromSun()) * RADIANS
 	return -0.015278 * math.Sin(A)
+}
+
+func (m Moon) Terms() float64 {
+	return m.Term1() + m.Term2() + m.Term3() + m.Term4() + m.Term5() + m.Term6() + m.Term7()
+}
+
+func (m Moon) Qs() float64 {
+	return m.MajorInequality() + m.Evecation() + m.Variation() + m.AnnualInequality() + m.EclipticReduction() + m.ParallacticInequality()
 }
