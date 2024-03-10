@@ -13,9 +13,12 @@ func main() {
 	//var date = time.Date(2005, time.May, 5, 0, 0, 0, 0, time.Local)
 	var jd = julian.Init(time.Now())
 
-	var moon = celestialobject.Moon{Time: jd.Century()}
-
 	var sun = celestialobject.Sun{Time: jd.Century()}
+
+	var moon = celestialobject.Moon{
+    Time: jd.Century(),
+    SunMeanAnomaly: sun.MeanAnomaly(),
+  }
 
 	fmt.Printf("Julian Day: %f\n", jd.JulianDay)
 	fmt.Printf("Since J2000: %f\n", jd.SinceJ2000())
@@ -46,7 +49,7 @@ func main() {
 	var F = moon.ArgumentOfLatitude() + moon.Qs()
 
 	var i = math.Sin(5.145 * math.Pi / 180)
-	var moonLatitude = math.Asin(i * math.Sin(F*math.Pi/180)) * 180/math.Pi
+	var moonLatitude = math.Asin(i*math.Sin(F*math.Pi/180)) * 180 / math.Pi
 
 	fmt.Printf("Moon's Longitude:  %f\n", moonLongitude)
 	fmt.Printf("Moon's Latitude:   %f\n", moonLatitude)
