@@ -12,10 +12,18 @@ func Cos(x float64) float64 {
   return math.Cos(x * RADIANS)
 }
 
+func Tan(x float64) float64 {
+  return math.Tan(x * RADIANS)
+}
+
 func Asin(x float64) float64 {
-	return math.Asin(x * RADIANS) * 180 / math.Pi
+	return math.Asin(x) * 180 / math.Pi
 }
 
 func Atan(x float64) float64 {
-  return math.Asin(x * RADIANS) * 180 / math.Pi
+  return math.Atan(x) * 180 / math.Pi
+}
+
+func Atan2(y float64, x float64) float64 {
+  return math.Atan2(y, x) * 180 / math.Pi
 }

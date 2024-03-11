@@ -1,7 +1,8 @@
 package celestialobject
 
 import (
-	"math"
+  "math"
+	"github.com/zakester/Astrolabe/internal/mathutils"
 )
 
 const RADIANS float64 = math.Pi / 180
@@ -99,10 +100,21 @@ func (m Moon) Term7() float64 {
 	return -0.015278 * math.Sin(A)
 }
 
+// The sum of all Terms (Term1-Term7)
 func (m Moon) Terms() float64 {
 	return m.Term1() + m.Term2() + m.Term3() + m.Term4() + m.Term5() + m.Term6() + m.Term7()
 }
 
+// Sum of all Moon Anomalies (Q1-Q6)
 func (m Moon) Qs() float64 {
 	return m.MajorInequality() + m.Evecation() + m.Variation() + m.AnnualInequality() + m.EclipticReduction() + m.ParallacticInequality()
+}
+
+func (m Moon) EclipticCoordinates() *EclipticCoordinates {
+	var F = m.ArgumentOfLatitude() + m.Qs()
+
+	return &EclipticCoordinates{
+		Lambda: m.MeanLongitude() + m.Qs(),
+		Beta:   mathutils.Asin(mathutils.Sin(MoonInclination) * mathutils.Sin(F)),
+	}
 }

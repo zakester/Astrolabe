@@ -4,18 +4,18 @@ import "github.com/zakester/Astrolabe/internal/mathutils"
 
 type CelestialCoordinates struct {
 	// Declination.
-	delta float64
+	Delta float64
 	// Right Ascension.
-	alpha float64
+	Alpha float64
 }
 
 // Convert Declination (δ) and Right Ascension (α) to Ecliptic Longitude (λ) and Ecliptic Latitude (β)
-func (ec CelestialCoordinates) ToEclipticCoordintaes() *EclipticCoordinates {
-  var A = (mathutils.Cos(Epsilon)*mathutils.Sin(ec.delta)*mathutils.Sin(ec.alpha) + mathutils.Sin(Epsilon) * mathutils.Sin(ec.delta)) / mathutils.Cos(ec.delta) * mathutils.Cos(ec.alpha)
+func (cc CelestialCoordinates) ToEclipticCoordintaes() *EclipticCoordinates {
+  var A = (mathutils.Cos(Epsilon)*mathutils.Sin(cc.Delta)*mathutils.Sin(cc.Alpha) + mathutils.Sin(Epsilon) * mathutils.Sin(cc.Delta)) / mathutils.Cos(cc.Delta) * mathutils.Cos(cc.Alpha)
 
-  var B = mathutils.Cos(Epsilon) * mathutils.Sin(ec.delta) - mathutils.Sin(Epsilon) * mathutils.Cos(ec.delta) * mathutils.Sin(ec.alpha)
+  var B = mathutils.Cos(Epsilon) * mathutils.Sin(cc.Delta) - mathutils.Sin(Epsilon) * mathutils.Cos(cc.Delta) * mathutils.Sin(cc.Alpha)
 	return &EclipticCoordinates{
-		lambda: mathutils.Asin(A),
-		beta:   mathutils.Atan(B),
+		Lambda: mathutils.Asin(A),
+		Beta:   mathutils.Atan(B),
 	}
 }

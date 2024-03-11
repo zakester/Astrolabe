@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"math"
 	"time"
 
 	celestialobject "github.com/zakester/Astrolabe/internal/celestialobject"
@@ -16,9 +15,9 @@ func main() {
 	var sun = celestialobject.Sun{Time: jd.Century()}
 
 	var moon = celestialobject.Moon{
-    Time: jd.Century(),
-    SunMeanAnomaly: sun.MeanAnomaly(),
-  }
+		Time:           jd.Century(),
+		SunMeanAnomaly: sun.MeanAnomaly(),
+	}
 
 	fmt.Printf("Julian Day: %f\n", jd.JulianDay)
 	fmt.Printf("Since J2000: %f\n", jd.SinceJ2000())
@@ -45,13 +44,14 @@ func main() {
 	//fmt.Printf("D: %f\n", moon.MeanLongitude() - D)
 	fmt.Printf("D: %f\n", moon.LongitudeDistanceFromSun())
 
-	var moonLongitude = moon.MeanLongitude() + moon.Qs()
-	var F = moon.ArgumentOfLatitude() + moon.Qs()
+	var ec = moon.EclipticCoordinates()
+	var cc = ec.ToCelestialCoordinates()
 
-	var i = math.Sin(5.145 * math.Pi / 180)
-	var moonLatitude = math.Asin(i*math.Sin(F*math.Pi/180)) * 180 / math.Pi
+	fmt.Printf("Moon's Longitude: %f\n", ec.Lambda)
+	fmt.Printf("Moon's Latitude: %f\n", ec.Beta)
 
-	fmt.Printf("Moon's Longitude:  %f\n", moonLongitude)
-	fmt.Printf("Moon's Latitude:   %f\n", moonLatitude)
-	fmt.Printf("Mean Latitude (F): %f\n", F)
+  fmt.Println("")
+
+	fmt.Printf("Moon's Declination: %f\n", cc.Delta)
+	fmt.Printf("Moon's Right Ascension: %f\n", cc.Alpha)
 }
