@@ -6,6 +6,7 @@ import (
 
 	celestialobject "github.com/zakester/Astrolabe/internal/celestialobject"
 	julian "github.com/zakester/Astrolabe/internal/julian"
+	"github.com/zakester/Astrolabe/internal/mathutils"
 )
 
 func main() {
@@ -52,6 +53,6 @@ func main() {
 
   fmt.Println("")
 
-	fmt.Printf("Moon's Declination: %f\n", cc.Delta)
-	fmt.Printf("Moon's Right Ascension: %f\n", cc.Alpha)
+	fmt.Printf("Moon's Declination: %f°\n", cc.Delta)
+	fmt.Printf("Moon's Right Ascension: %f°     %f ha\n", cc.Alpha, mathutils.Deg2HourAngle(cc.Alpha))
 }
