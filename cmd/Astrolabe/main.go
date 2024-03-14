@@ -7,11 +7,13 @@ import (
 	celestialobject "github.com/zakester/Astrolabe/internal/celestialobject"
 	julian "github.com/zakester/Astrolabe/internal/julian"
 	"github.com/zakester/Astrolabe/internal/mathutils"
+	"github.com/zakester/Astrolabe/internal/timeutiles"
 )
 
 func main() {
-	//var date = time.Date(2005, time.May, 5, 0, 0, 0, 0, time.Local)
-	var jd = julian.Init(time.Now())
+	//var date = time.Date(2024, time.March, 14, 15, 36, 54, 0, time.Local)
+  var date = time.Now()
+	var jd = julian.Init(date)
 
 	var sun = celestialobject.Sun{Time: jd.Century()}
 
@@ -41,12 +43,13 @@ func main() {
 	fmt.Printf("Ecliptic Reduction (q5):      %f\n", moon.EclipticReduction())
 	fmt.Printf("Parallactic Inequality (q6):  %f\n", moon.ParallacticInequality())
 
-	//var D = sun.MeanLongitude()
+	//kar D = sun.MeanLongitude()
 	//fmt.Printf("D: %f\n", moon.MeanLongitude() - D)
 	fmt.Printf("D: %f\n", moon.LongitudeDistanceFromSun())
 
 	var ec = moon.EclipticCoordinates()
 	var cc = ec.ToCelestialCoordinates()
+	var hc = cc.ToHorizonzalCoordinates(timeutiles.MeanGST(jd))
 
 	fmt.Printf("Moon's Longitude: %f\n", ec.Lambda)
 	fmt.Printf("Moon's Latitude: %f\n", ec.Beta)
@@ -55,4 +58,9 @@ func main() {
 
 	fmt.Printf("Moon's Declination: %f°\n", cc.Delta)
 	fmt.Printf("Moon's Right Ascension: %f°     %f ha\n", cc.Alpha, mathutils.Deg2HourAngle(cc.Alpha))
+
+  fmt.Println("")
+
+	fmt.Printf("Moon's Altitude: %f°\n", hc.Altitude)
+	fmt.Printf("Moon's Azimuth:  %f°\n", hc.Azimuth)
 }
