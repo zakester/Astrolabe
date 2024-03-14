@@ -15,11 +15,12 @@ func main() {
   var date = time.Now()
 	var jd = julian.Init(date)
 
-	var sun = celestialobject.Sun{Time: jd.Century()}
+	//var sun = celestialobject.Sun{Time: jd.Century()}
+  var sun = celestialobject.InitSun(jd.Century())
 
 	var moon = celestialobject.Moon{
 		Time:           jd.Century(),
-		SunMeanAnomaly: sun.MeanAnomaly(),
+		SunMeanAnomaly: sun.MeanAnomaly,
 	}
 
 	fmt.Printf("Julian Day: %f\n", jd.JulianDay)
@@ -27,7 +28,7 @@ func main() {
 	fmt.Printf("Century: %f\n", jd.Century())
 
 	fmt.Println("----Sun----")
-	fmt.Printf("Sun's Mean Anomaly: %f\n", sun.MeanAnomaly())
+	fmt.Printf("Sun's Mean Anomaly: %f\n", sun.MeanAnomaly)
 	//fmt.Printf("Mean Longitude L0: %f\n", sun.MeanLongitude())
 
 	fmt.Println("")

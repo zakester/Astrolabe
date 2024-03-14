@@ -20,3 +20,8 @@ func (ac AstroClock) Init(t time.Time) *AstroClock {
 		MeanGST: MeanGST(jd),
 	}
 }
+
+func (ac AstroClock) Set(t time.Time) *AstroClock {
+  ac = *ac.Init(t)
+  return &ac
+}
