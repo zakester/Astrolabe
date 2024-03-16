@@ -16,7 +16,7 @@ func (j Julian) Century() float64 {
 	return (j.JulianDay - J2000) / 36525
 }
 
-func Init(t time.Time, timezone float32) *Julian {
+func Init(t time.Time, utcOffset float32) *Julian {
 	var m = t.Month()
 	var y = t.Year()
 
@@ -32,7 +32,7 @@ func Init(t time.Time, timezone float32) *Julian {
 	var month = uint64(30.6001 * float64(m+1))
 	var time = float64(t.Hour()*3600.0 + t.Minute()*60.0 + t.Second())
 
-	var jd = 1720994.5 + float64(year) + float64(month) + float64(B) + float64(t.Day()) + (time / 86400.0) - (float64(timezone) / 24.0)
+	var jd = 1720994.5 + float64(year) + float64(month) + float64(B) + float64(t.Day()) + (time / 86400.0) - (float64(utcOffset) / 24.0)
 
 	return &Julian{JulianDay: jd}
 }

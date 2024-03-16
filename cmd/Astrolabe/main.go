@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	//var date = time.Date(2024, time.March, 16, 11, 57, 00, 0, time.Local)
+	//var date = time.Date(2024, time.March, 16, 12, 57, 00, 0, time.Local)
 	var date = time.Now()
 	var jd = julian.Init(date, 1)
 
