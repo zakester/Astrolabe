@@ -27,7 +27,7 @@ func Init(t time.Time) *Julian {
 
 	var A = uint8(y / 100)
 	var B = int8(2 + (A / 4) - A)
-	var timezone = 0.0
+	var timezone = 1.0
 
 	var year = uint32(365.25 * float64(y))
 	var month = uint64(30.6001 * float64(m+1))

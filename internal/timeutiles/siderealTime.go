@@ -1,7 +1,6 @@
 package timeutiles
 
 import (
-	"fmt"
 	"math"
 
 	"github.com/zakester/Astrolabe/internal/julian"
@@ -17,8 +16,8 @@ func MeanGST(jd *julian.Julian) float64 {
     gmst += math.Pi*2
   }
 
-  var gmstHMS = mathutils.Deg2HMS(mathutils.Deg2HourAngle(mathutils.Rad2Deg(gmst)))
-  fmt.Printf("GMST: %s\n", gmstHMS.ToString())
+  //var gmstHMS = mathutils.Deg2HMS(mathutils.Deg2HourAngle(mathutils.Rad2Deg(gmst)))
+  //fmt.Printf("GMST: %s\n", gmstHMS.ToString())
 
 	return mathutils.Rad2Deg(gmst)
 }

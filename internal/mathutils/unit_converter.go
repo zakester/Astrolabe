@@ -23,10 +23,23 @@ func (hms HMS) ToString() string {
 }
 
 func Deg2HMS(x float64) *HMS {
-	var totalSeconds = int(x * 3600)
-	var hour = totalSeconds / 3600
+	var totalSeconds = int(math.Abs(x) * 3600)
+	var hour = math.Mod(float64(totalSeconds) / 3600, 24)
 	var min = (totalSeconds % 3600) / 60
 	var sec = totalSeconds % 60
+
+
+	return &HMS{
+		Hour: uint8(hour),
+		Min:  uint8(min),
+		Sec:  uint8(sec),
+	}
+}
+
+func Deg360HMS(x float64) *HMS {
+  var hour = math.Abs(x) / 15.0
+  var min = (hour - math.Floor(hour)) * 60.0
+  var sec = (min - math.Floor(min)) * 60.0
 
 	return &HMS{
 		Hour: uint8(hour),
