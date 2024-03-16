@@ -13,7 +13,7 @@ import (
 func main() {
 	//var date = time.Date(2024, time.March, 16, 11, 57, 00, 0, time.Local)
 	var date = time.Now()
-	var jd = julian.Init(date)
+	var jd = julian.Init(date, 1)
 
 	var sun = celestialobject.InitSun(jd.Century())
   var moon = celestialobject.InitMoon(jd.Century(), sun.MeanAnomaly)

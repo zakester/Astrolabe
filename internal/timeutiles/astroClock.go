@@ -12,8 +12,8 @@ type AstroClock struct {
 	MeanGST float64
 }
 
-func (ac AstroClock) Init(t time.Time) *AstroClock {
-	var jd = julian.Init(t)
+func (ac AstroClock) Init(t time.Time, timezone float32) *AstroClock {
+	var jd = julian.Init(t, timezone)
 	return &AstroClock{
 		Time:    t,
 		Julian:  jd,
@@ -21,7 +21,7 @@ func (ac AstroClock) Init(t time.Time) *AstroClock {
 	}
 }
 
-func (ac AstroClock) Set(t time.Time) *AstroClock {
-  ac = *ac.Init(t)
-  return &ac
+func (ac AstroClock) Set(t time.Time, timezone float32) *AstroClock {
+	ac = *ac.Init(t, timezone)
+	return &ac
 }
