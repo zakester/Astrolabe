@@ -5,18 +5,17 @@ import (
 	"time"
 
 	celestialobject "github.com/zakester/Astrolabe/internal/celestialobject"
-	julian "github.com/zakester/Astrolabe/internal/julian"
 	"github.com/zakester/Astrolabe/internal/mathutils"
-	"github.com/zakester/Astrolabe/internal/timeutiles"
 )
 
 func main() {
 	//var date = time.Date(2024, time.March, 16, 12, 57, 00, 0, time.Local)
 	var date = time.Now()
-	var jd = julian.Init(date, 1)
+  var observer = celestialobject.InitObserver(36.5166667, 2.88333, date, 1.0)
+	var jd = observer.Julian
 
-	var sun = celestialobject.InitSun(jd.Century())
-  var moon = celestialobject.InitMoon(jd.Century(), sun.MeanAnomaly)
+	var sun = celestialobject.InitSun(observer.Julian.Century())
+  var moon = celestialobject.InitMoon(observer.Julian.Century(), sun.MeanAnomaly)
 
 	fmt.Printf("Julian Day:  %f\n", jd.JulianDay)
 	fmt.Printf("Since J2000: %f\n", jd.SinceJ2000())
@@ -35,8 +34,8 @@ func main() {
 
 	fmt.Println("")
 
-	fmt.Printf("Sun's Altitude: %f°\n", sun.EclipticCoordinates.ToCelestialCoordinates().ToHorizonzalCoordinates(timeutiles.MeanGST(jd)).Altitude)
-	fmt.Printf("Sun's Azimuth:  %f°\n", sun.EclipticCoordinates.ToCelestialCoordinates().ToHorizonzalCoordinates(timeutiles.MeanGST(jd)).Azimuth)
+	fmt.Printf("Sun's Altitude: %f°\n", sun.EclipticCoordinates.ToCelestialCoordinates().ToHorizonzalCoordinates(observer).Altitude)
+	fmt.Printf("Sun's Azimuth:  %f°\n", sun.EclipticCoordinates.ToCelestialCoordinates().ToHorizonzalCoordinates(observer).Azimuth)
 
 	fmt.Println("")
 
@@ -57,7 +56,7 @@ func main() {
 
 	var ec = moon.EclipticCoordinates()
 	var cc = ec.ToCelestialCoordinates()
-	var hc = cc.ToHorizonzalCoordinates(timeutiles.MeanGST(jd))
+	var hc = cc.ToHorizonzalCoordinates(observer)
 
 	fmt.Printf("Moon's Longitude: %f\n", ec.Lambda)
 	fmt.Printf("Moon's Latitude: %f\n", ec.Beta)

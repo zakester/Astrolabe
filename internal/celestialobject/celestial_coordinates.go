@@ -22,12 +22,13 @@ func (cc CelestialCoordinates) ToEclipticCoordinates() *EclipticCoordinates {
 	}
 }
 
-func (cc CelestialCoordinates) ToHorizonzalCoordinates(meanGST float64) *HorizontalCoordinates {
-	var lat = 36.5166667
-	var h = meanGST + 2.88333 - cc.Alpha
+func (cc CelestialCoordinates) ToHorizonzalCoordinates(observer *Observer) *HorizontalCoordinates {
+	var lat = observer.Latitude
+	var h = observer.MeanGST + observer.Longitude - cc.Alpha
 	var sinAltitude = mathutils.Sin(lat)*mathutils.Sin(cc.Delta) + mathutils.Cos(lat)*mathutils.Cos(cc.Delta)*mathutils.Cos(h)
 	var x = -mathutils.Sin(lat)*mathutils.Cos(cc.Delta)*mathutils.Cos(h) + mathutils.Cos(lat)*mathutils.Sin(cc.Delta)
 	var y = mathutils.Cos(cc.Delta) * mathutils.Sin(h)
+
 	var azimuth = -mathutils.Atan2(y, x)
 	if azimuth < 0 {
 		azimuth += 360.0
