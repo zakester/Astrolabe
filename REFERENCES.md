@@ -1,0 +1,23 @@
+# References
+
+- [**Basics of Positional Astronomy and Ephemerides**](http://www.geoastro.de/elevazmoon/basics/index.htm)
+
+- [**Astronomical Algorithms**](http://www.geoastro.de/elevazmoon/basics/meeus.htm)
+- [**Transit and Culmination**](http://www.geoastro.de/TransitCulm/index.html)
+- [**Astronomical Algorithms**](http://www.geoastro.de/elevaz/basics/meeus.htm)
+- [**Calculate Moon's Ecliptic Longitude**](https://gist.github.com/g00dv1n/94d4b15155acd07b8c53bbf034d1db79)
+- [**A Modern Almagest**](https://farside.ph.utexas.edu/books/Syntaxis/Almagest/Almagest.html)
+- [**Motion of the Moon**](http://jgiesen.de/moonmotion/index.html)
+- [**A Method for Predicting the First Sighting of the New Crescent Moon by BD Yallop**](https://astronomycenter.net/pdf/yallop_1997.pdf)
+- [**Visibility of the Thin Lunar Crescent**](https://articles.adsabs.harvard.edu/cgi-bin/t2png?bg=%23FFFFFF&/seri/AfrSk/0014/600/0000054.000&db_key=AST&bits=4&res=100&filetype=.jpg)
+- [**The first sight of the Crescent on earth according to Yallop, SAAO and Odeh Criteria,, and the introduction of the Hijri Date Line as the Sunset Terminator Line of the opposite point of Mecca from its latitude**](https://astronomycenter.net/pdf/robb_2107_paper.pdf)
+- [**Calculate the Moon Phase**](https://www.subsystems.us/uploads/9/8/9/4/98948044/moonphase.pdf)
+- [**LOW-PRECISION FORMULAE FOR PLANETARY POSITIONS**](https://articles.adsabs.harvard.edu/pdf/1979ApJS...41..391V)
+- [**Moonposition**](https://www.dannybekaert.be/en/moonposition)
+- [**Astronomical coordinate systems**](https://en.wikipedia.org/wiki/Astronomical_coordinate_systems)
+- [**How to find Greenwich Mean Sideral Time?**](https://astronomy.stackexchange.com/questions/21002/how-to-find-greenwich-mean-sideral-time)
+- [**Converting ecliptical to equatorial coordinates**](https://astronomy.stackexchange.com/questions/15008/converting-ecliptical-to-equatorial-coordinates)
+- [**Astronomical Calculations: Solar Coordinates**](https://squarewidget.com/solar-coordinates/)
+- [**Equation of the center**](https://en.wikipedia.org/wiki/Equation_of_the_center)
+- [**Orbital Eccentricity**](https://en.wikipedia.org/wiki/Orbital_eccentricity)
+- [**Greenwich Mean Sidereal Time**](https://astrogreg.com/snippets/greenwichMeanSiderealTime.html)

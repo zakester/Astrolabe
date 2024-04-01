@@ -1,21 +1,21 @@
 package main
 
 import (
-	"fmt"
 	"time"
-
+  "fmt"
 	celestialobject "github.com/zakester/Astrolabe/internal/celestialobject"
 	"github.com/zakester/Astrolabe/internal/mathutils"
 )
 
+
 func main() {
 	//var date = time.Date(2024, time.March, 16, 12, 57, 00, 0, time.Local)
 	var date = time.Now()
-  var observer = celestialobject.InitObserver(36.5166667, 2.88333, date, 1.0)
+	var observer = celestialobject.InitObserver(36.5166667, 2.88333, date, 1.0)
 	var jd = observer.Julian
 
 	var sun = celestialobject.InitSun(observer.Julian.Century())
-  var moon = celestialobject.InitMoon(observer.Julian.Century(), sun.MeanAnomaly)
+	var moon = celestialobject.InitMoon(observer.Julian.Century(), sun.MeanAnomaly)
 
 	fmt.Printf("Julian Day:  %f\n", jd.JulianDay)
 	fmt.Printf("Since J2000: %f\n", jd.SinceJ2000())
